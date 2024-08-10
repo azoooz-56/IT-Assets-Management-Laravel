@@ -37,8 +37,6 @@ class ITAssetController extends Controller
 
     public function update(UpdateITAssetRequest $request, ITAsset $asset)
     {
-        // Now you can use $asset directly without needing to find it manually
-        // $asset is already resolved by Laravel
 
         $validated = $request->validated();
 
