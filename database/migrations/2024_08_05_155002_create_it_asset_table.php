@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('serial_number')->unique();
             $table->date('warranty_expiration_date');
             $table->enum('status', ['New', 'In Use', 'Damaged', 'Dispose']);
-            $table->timestamps(); // This will add created_at and updated_at columns
+            $table->timestamps();
         });
     }
 

@@ -37,43 +37,12 @@ class Handler extends ExceptionHandler
         $this->renderable( function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, Request $request) {
             if ( $request->is( 'api/*' ) ) {
                 return response()->json( [
-                    // 'message' => __( 'locale.api.errors.not_found_route_or_model_message', [], $request->header( 'Accept-Language', app()->getLocale() ) ),
-                    // 'message' => __( 'locale.api.errors.not_found_route_or_model_message', [], app()->getLocale() ),
                     'message' => $e->getMessage(),
                     'code'    => 'NOT_FOUND_EXCEPTION',
                 ], Response::HTTP_NOT_FOUND );
             }
         } );
 
-        // $this->renderable( function (\Illuminate\Database\Eloquent\ModelNotFoundException $e, Request $request) {
-        //     if ( $request->is( 'api/*' ) ) {
-        //         return response()->json( [
-        //             'message' => __( 'locale.api.errors.not_found_route_or_model_message', [], $request->header( 'Accept-Language', app()->getLocale() ) ),
-        //             // 'message' => __( 'locale.api.errors.not_found_route_or_model_message', [], app()->getLocale() ),
-        //             'code' => 'MODEL_NOT_FOUND_EXCEPTION',
-        //         ], Response::HTTP_NOT_FOUND );
-        //     }
-        // } );
-
-        $this->renderable( function (\Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException $e, Request $request) {
-            if ( $request->is( 'api/*' ) ) {
-                return response()->json( [
-                    'message' => __( 'locale.api.errors.request_unauthorized_action', [], $request->header( 'Accept-Language', app()->getLocale() ) ),
-                    // 'message' => __( 'locale.api.errors.request_unauthorized_action', [], app()->getLocale() ),
-                    'code'    => 'ACCESS_DENIED_EXCEPTION',
-                ], Response::HTTP_FORBIDDEN );
-            }
-        } );
-
-        $this->renderable( function (\Illuminate\Auth\AuthenticationException $e, Request $request) {
-            if ( $request->is( 'api/*' ) ) {
-                return response()->json( [
-                    'message' => __( 'locale.api.errors.user_unauthenticated', [], $request->header( 'Accept-Language', app()->getLocale() ) ),
-                    // 'message' => __( 'locale.api.errors.user_unauthenticated', [], app()->getLocale() ),
-                    'code'    => 'AUTHENTICATION_EXCEPTION',
-                ], Response::HTTP_UNAUTHORIZED );
-            }
-        } );
 
         $this->renderable( function (\Illuminate\Validation\ValidationException $e, Request $request) {
             if ( $request->is( 'api/*' ) ) {
